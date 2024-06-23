@@ -1,0 +1,63 @@
+<!-- templates/seriale/register.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h2>Înregistrare</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
+
+<!-- templates/seriale/login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>Autentificare</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
+
+<!-- templates/seriale/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seriale</title>
+</head>
+<body>
+    <h2>Lista Seriale</h2>
+    <ul>
+        {% for serial in seriale %}
+            <li>{{ serial.titlu }} - {{ serial.tara.nume }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+<!-- templates/seriale/adauga_comentariu.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adaugă Comentariu</title>
+</head>
+<body>
+    <h2>Adaugă Comentariu</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Trimite</button>
+    </form>
+</body>
+</html>
