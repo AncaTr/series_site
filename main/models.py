@@ -1,7 +1,5 @@
-
 from django.contrib.auth.models import User
 from django.db import models
-
 
 class Gen(models.Model):
     nume = models.CharField(max_length=100)
@@ -33,3 +31,10 @@ class Comentariu(models.Model):
     def __str__(self):
         return f'Comentariu de {self.utilizator.username} la {self.serial.titlu}'
 
+
+class SeriesList(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(max_length=100000)
+
+    def __str__(self):
+        return self.name

@@ -1,0 +1,4 @@
+#main_nav_id ul li {
+  display: inline-block;
+  margin-right: 10px;  /* Add some margin for spacing */
+}
