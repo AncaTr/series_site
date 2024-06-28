@@ -27,9 +27,12 @@ def user_settings(request):
 
 def adauga_comentariu(request, serial_id):
     # Your add comment logic here
-    return render(request, 'adauga_comentariu.html', {'serial_id': serial_id})
+    return render(request, 'series/static/templates/registration/adauga_comentariu.html',
+                  {'serial_id': serial_id})
 
 def login(request):
     return HttpResponse("<h2>Login page</h2>")
 def homepage(request):
+    return HttpResponse("<h2>home page</h2>")
+def serial_page(request):
     return HttpResponse("<h2>home page</h2>")

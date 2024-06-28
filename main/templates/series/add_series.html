@@ -1,0 +1,23 @@
+{#{% extends "base.html" %}#}
+{#{% block content %}#}
+{#    <h1>Add Series</h1>#}
+{#    <form method="POST" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit">Add Series</button>#}
+{#    </form>#}
+{#{% endblock %}#}
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>Add Series</title>
+</head>
+<body>
+    <h2>Add Series</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Series</button>
+    </form>
+</body>
+</html>

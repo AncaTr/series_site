@@ -4,3 +4,5 @@ from main.models import Serial, Gen, Tara
 admin.site.register(Serial)
 admin.site.register(Gen)
 admin.site.register(Tara)
+
+

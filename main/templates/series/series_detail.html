@@ -1,0 +1,24 @@
+{% extends "main/base.html" %}
+{% block content %}
+    <h1>{{ series.title }}</h1>
+    <p>{{ series.description }}</p>
+    <p>{{ series.country_of_origin }}</p>
+    <p>{{ series.genre }}</p>
+    {% if series.image %}
+        <img src="{{ series.image.url }}" alt="{{ series.title }}">
+    {% endif %}
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in series.reviews.all %}
+            <li>
+                <p>{{ review.comment }} - <small>{{ review.user.username }} at {{ review.date_posted }}</small></p>
+                <p>Rating: {{ review.rating }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Review</button>
+    </form>
+{% endblock %}
