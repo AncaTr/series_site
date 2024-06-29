@@ -1,12 +1,32 @@
+{#{% extends "base.html" %}#}
+{##}
+{#{% block title %}series list{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#    <h2>Series list</h2>#}
+{#    <ul>#}
+{#      {% for serial in series_list %}#}
+{#        <li>{{ serial.titlu }}</li>#}
+{#      {% endfor %}#}
+{#    </ul>#}
+{#{% endblock %}#}
 {% extends "base.html" %}
 
-{% block title %}series list{% endblock %}
+{% block title %}Series List{% endblock %}
 
 {% block content %}
-    <h2>Series list</h2>
+    <h2>Series List</h2>
     <ul>
       {% for serial in series_list %}
-        <li>{{ serial.titlu }}</li>
+        <li>
+          <h3>{{ serial.titlu }}</h3>
+          <p><strong>Descriere:</strong> {{ serial.descriere }}</p>
+          <p><strong>Genuri:</strong> {{ serial.genuri }}</p>
+          <p><strong>Țara:</strong> {{ serial.tara }}</p>
+          {% if serial.imagine %}
+            <img src="{{ serial.imagine.url }}" alt="{{ serial.titlu }}" style="width:200px;height:auto;">
+          {% endif %}
+        </li>
       {% endfor %}
     </ul>
 {% endblock %}
