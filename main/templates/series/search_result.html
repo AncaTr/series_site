@@ -1,17 +1,39 @@
-{% extends "main/base.html" %}
+{#{% extends "main/base.html" %}#}
+{#{% block content %}#}
+{#    <h1>Search Results</h1>#}
+{#    {% if query %}#}
+{#        <p>Results for "{{ query }}":</p>#}
+{#        <ul>#}
+{#            {% for serie in results %}#}
+{#                <li><a href="{% url 'series_site-detail' serie.pk %}">{{ serie.title }}</a></li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#        {% if not results %}#}
+{#            <p>No results found.</p>#}
+{#        {% endif %}#}
+{#    {% else %}#}
+{#        <p>Please enter a search query.</p>#}
+{#    {% endif %}#}
+{#{% endblock %}#}
+{% extends "base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
 {% block content %}
-    <h1>Search Results</h1>
-    {% if query %}
-        <p>Results for "{{ query }}":</p>
+    <h2>Search Results</h2>
+
+    <form method="GET" action="{% url 'search' %}">
+        <input type="text" name="q" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
         <ul>
-            {% for serie in results %}
-                <li><a href="{% url 'series_site-detail' serie.pk %}">{{ serie.title }}</a></li>
+            {% for serial in results %}
+                <li>{{ serial.titlu }}</li>
             {% endfor %}
         </ul>
-        {% if not results %}
-            <p>No results found.</p>
-        {% endif %}
     {% else %}
-        <p>Please enter a search query.</p>
+        <p>No results found.</p>
     {% endif %}
 {% endblock %}

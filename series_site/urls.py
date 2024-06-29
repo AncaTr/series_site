@@ -18,5 +18,7 @@ urlpatterns = [
     path("user_settings/", views.user_settings, name="user_settings"),
     path("accounts/", include(accounts_urlpatterns)),
     path('adauga_comentariu/<int:serial_id>/', views.adauga_comentariu, name='adauga_comentariu'),
+    path('search/', views.search, name='search'),
 
 ]
+

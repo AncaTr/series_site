@@ -1,4 +1,85 @@
 #main_nav_id ul li {
   display: inline-block;
-  margin-right: 10px;  /* Add some margin for spacing */
+  margin-right: 10px; /* Add some margin for spacing */
 }
+body {
+    background-color: #3498db; /* Culoare fundal albastru deschis pentru întreaga pagină */
+    font-family: Arial, sans-serif;
+    color: #333; /* Culoare text generală */
+    margin: 0; /* Elimină marginile implicite */
+}
+
+.main-nav {
+    background-color: #333; /* Culoare fundal bara de meniu */
+    overflow: hidden;
+    margin-bottom: 20px; /* Spațiu între bara de meniu și conținutul principal */
+}
+
+.main-nav ul {
+    list-style-type: none; /* Elimină stilurile implicite de listă */
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav ul li {
+    display: inline; /* Așezare orizontală a elementelor de listă */
+}
+
+.main-nav ul li a {
+    display: block;
+    color: #fff; /* Culoare text link-uri */
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.main-nav ul li a:hover {
+    background-color: #555; /* Culoare fundal link la hover */
+}
+
+.page-container {
+    background-color: #fff; /* Fundal alb pentru conținut */
+    padding: 20px; /* Spațiere pentru conținut */
+    border-radius: 5px; /* Rotunjire colțuri */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Umbră subtilă */
+    max-width: 800px; /* Lățime maximă a conținutului pentru centrat */
+    margin: 0 auto; /* Centrare pe pagina */
+}
+
+.page-container h2 {
+    color: #3498db; /* Culoare titlu */
+    padding: 10px 20px; /* Spațiere pentru titlu */
+    margin-top: 0; /* Eliminăm marginile de sus pentru a lipi titlul de bara de meniu */
+    border-bottom: 2px solid #3498db; /* Linie subtitlu */
+}
+
+.series-list {
+    list-style-type: none; /* Elimină stilurile implicite de listă */
+    padding: 0;
+}
+
+.series-item {
+    background-color: #f1f1f1; /* Fundal gri pentru fiecare element de serie */
+    padding: 20px;
+    margin-bottom: 20px; /* Spațiu între fiecare element */
+    border-radius: 5px; /* Rotunjire colțuri */
+}
+
+.series-item h3 {
+    color: #333; /* Culoare titlu serie */
+}
+
+.series-item .description {
+    color: #666; /* Culoare descriere serie */
+    margin-bottom: 10px; /* Spațiu între descriere și gen/țară */
+}
+
+.series-item p {
+    margin: 5px 0; /* Spațiu între paragrafe */
+}
+
+.series-item img {
+    max-width: 100%; /* Imagine responsive */
+    height: auto; /* Înălțime auto pentru imagine */
+    margin-top: 10px; /* Spațiu între imagine și text */
+}
+

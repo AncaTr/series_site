@@ -37,3 +37,13 @@ def homepage(request):
     return HttpResponse("<h2>home page</h2>")
 def serial_page(request):
     return HttpResponse("<h2>home page</h2>")
+from django.shortcuts import render
+from .models import Serial
+
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        results = Serial.objects.filter(titlu__icontains=query)
+    else:
+        results = []
+    return render(request, 'search_result.html', {'results': results, 'query': query})
