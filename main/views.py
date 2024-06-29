@@ -2,12 +2,11 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-
 from main.models import Serial
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
 from django.shortcuts import render
-
+from django.template import loader
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
@@ -19,7 +18,9 @@ def root(request):
     return redirect("series_list")
 def series_list(request):
     series = Serial.objects.all()
-    return render(request, 'series_list.html', {'series': series})
+    template = loader.get_template('series_list.html')
+    context = {'series_list': series}
+    return HttpResponse(template.render(context, request))
 def register(request):
     return HttpResponse("<h2>Register page</h2>")
 def user_settings(request):
