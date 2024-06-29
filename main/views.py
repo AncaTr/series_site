@@ -2,10 +2,8 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from main.models import Serial
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
-from django.shortcuts import render
 from django.template import loader
 
 class SignUpView(CreateView):
@@ -47,3 +45,16 @@ def search(request):
     else:
         results = []
     return render(request, 'search_result.html', {'results': results, 'query': query})
+
+
+def submit_review(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        comment = request.POST.get('comment')
+        rating = request.POST.get('rating')
+        # Procesează datele aici (de ex. salvează în baza de date sau altă acțiune)
+
+        # Exemplu de redirectionare către pagina principală după submit
+        return redirect('series_list')  # Înlocuiește 'series_list' cu numele corect al view-ului tău pentru listarea serialelor
+
+    return render(request, 'series_list.html')  # Întoarce pagina în caz de GET request

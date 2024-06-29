@@ -1,31 +1,51 @@
-
 {% extends "base.html" %}
 
 {% block title %}Series List{% endblock %}
 
 {% block content %}
-    <nav class="main-nav">
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'series_list' %}">Series List</a></li>
-            <!-- Alte legături de navigare pot fi adăugate aici -->
-        </ul>
-    </nav>
-
     <div class="page-container">
         <h2>Series List</h2>
         <ul class="series-list">
             {% for serial in series_list %}
-            <li class="series-item">
-                <h3>{{ serial.titlu }}</h3>
-                <p class="description">{{ serial.descriere }}</p>
-                <p><strong>Genuri:</strong> {{ serial.genuri }}</p>
-                <p><strong>Țara:</strong> {{ serial.tara }}</p>
-                {% if serial.imagine %}
-                <img src="{{ serial.imagine.url }}" alt="{{ serial.titlu }}" class="series-image">
-                {% endif %}
-            </li>
+                <li class="series-item">
+                    <h3>{{ serial.titlu }}</h3>
+                    <p class="description">{{ serial.descriere }}</p>
+                    <p><strong>Genuri:</strong> {{ serial.genuri }}</p>
+                    <p><strong>Țara:</strong> {{ serial.tara }}</p>
+                    {% if serial.imagine %}
+                        <img src="{{ serial.imagine.url }}" alt="{{ serial.titlu }}" class="series-image">
+                    {% endif %}
+
+                    <!-- Butonul pentru deschiderea formularului -->
+                    <button class="openReviewForm" data-serial-id="{{ serial.id }}">Adaugă comentariu și rating</button>
+
+                    <!-- Formularul de recenzie specific serialului -->
+                    <div class="reviewForm" id="reviewForm-{{ serial.id }}" style="display: none;">
+                        <form action="/submit_review/{{ serial.id }}/" method="post">
+                            {% csrf_token %}
+                            <label for="name">Nume:</label><br>
+                            <input type="text" id="name" name="name"><br>
+                            <label for="comment">Comentariu:</label><br>
+                            <textarea id="comment" name="comment"></textarea><br>
+                            <label for="rating">Rating (1-5 stele):</label><br>
+                            <input type="number" id="rating" name="rating" min="1" max="5"><br>
+                            <input type="submit" value="Trimite">
+                        </form>
+                    </div>
+                </li>
             {% endfor %}
         </ul>
     </div>
+
+    <!-- Scriptul JavaScript pentru a gestiona deschiderea formularului -->
+    <script>
+        document.querySelectorAll('.openReviewForm').forEach(button => {
+            button.addEventListener('click', function() {
+                const serialId = this.getAttribute('data-serial-id');
+                const reviewForm = document.getElementById(`reviewForm-${serialId}`);
+                reviewForm.style.display = 'block';
+            });
+        });
+    </script>
 {% endblock %}
+
