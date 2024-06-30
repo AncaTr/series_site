@@ -1,10 +1,10 @@
-
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
 from django.template import loader
+from main.models import Review
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
@@ -48,13 +48,24 @@ def search(request):
 
 
 def submit_review(request, serial_id):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        comment = request.POST.get('comment')
-        rating = request.POST.get('rating')
-        # Procesează datele aici (de ex. salvează în baza de date sau altă acțiune)
+    assert request.method == 'POST'
+    name = request.POST.get('name')
+    comment = request.POST.get('comment')
+    rating = request.POST.get('rating')
+    # Procesează datele aici (de ex. salvează în baza de date sau altă acțiune)
 
-        # Exemplu de redirectionare către pagina principală după submit
-        return redirect('series_list')  # Înlocuiește 'series_list' cu numele corect al view-ului tău pentru listarea serialelor
+    serial = Serial.objects.get(pk=serial_id)
+    user = request.user
 
-    return render(request, 'series_list.html')  # Întoarce pagina în caz de GET request
+    review = Review(
+        name=name,
+        comment=comment,
+        rating=rating,
+        reviewer=user,
+        serial=serial,
+    )
+
+    review.save()
+
+    # Exemplu de redirectionare către pagina principală după submit
+    return redirect('series_list')  # Înlocuiește 'series_list' cu numele corect al view-ului tău pentru listarea serialelor

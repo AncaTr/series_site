@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 class Gen(models.Model):
     nume = models.CharField(max_length=100)
 
@@ -38,3 +39,11 @@ class SeriesList(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Review(models.Model):
+    name = models.CharField(max_length=100)
+    comment = models.TextField()
+    rating = models.IntegerField()
+    reviewer = models.ForeignKey(User, on_delete=models.CASCADE)
+    serial = models.ForeignKey(Serial, on_delete=models.CASCADE)
