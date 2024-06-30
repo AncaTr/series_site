@@ -68,4 +68,10 @@ def submit_review(request, serial_id):
     review.save()
 
     # Exemplu de redirectionare către pagina principală după submit
-    return redirect('series_list')  # Înlocuiește 'series_list' cu numele corect al view-ului tău pentru listarea serialelor
+    return redirect('series_list')
+    # Înlocuiește 'series_list' cu numele corect al view-ului tău pentru listarea serialelor
+def reviews(request, serial_id):
+    reviews = Review.objects.filter(serial_id=serial_id)
+    template = loader.get_template('reviews_list.html')
+    context = {'reviews_list': reviews}
+    return HttpResponse(template.render(context, request))

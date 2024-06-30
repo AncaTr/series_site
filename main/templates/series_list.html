@@ -8,6 +8,7 @@
         <ul class="series-list">
             {% for serial in series_list %}
                 <li class="series-item">
+                    <a href="{% url 'reviews' serial.id %}">See reviews</a>
                     <h3>{{ serial.titlu }}</h3>
                     <p class="description">{{ serial.descriere }}</p>
                     <p><strong>Genuri:</strong> {{ serial.genuri }}</p>
