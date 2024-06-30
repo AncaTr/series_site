@@ -47,7 +47,7 @@ def search(request):
     return render(request, 'search_result.html', {'results': results, 'query': query})
 
 
-def submit_review(request):
+def submit_review(request, serial_id):
     if request.method == 'POST':
         name = request.POST.get('name')
         comment = request.POST.get('comment')

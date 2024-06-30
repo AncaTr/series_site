@@ -19,6 +19,6 @@ urlpatterns = [
     path("accounts/", include(accounts_urlpatterns)),
     path('adauga_comentariu/<int:serial_id>/', views.adauga_comentariu, name='adauga_comentariu'),
     path('search/', views.search, name='search'),
-
+    path('submit_review/<int:serial_id>/', views.submit_review, name='submit_review'),
 ]
 
