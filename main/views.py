@@ -75,3 +75,15 @@ def reviews(request, serial_id):
     template = loader.get_template('reviews_list.html')
     context = {'reviews_list': reviews}
     return HttpResponse(template.render(context, request))
+
+
+def my_view(request):
+    series_list = Serial.objects.all()  # Obținem lista de serii din baza de date
+    reviews_list = Review.objects.all()  # Obținem lista de recenzii din baza de date
+
+    concatenated_titles = ' - '.join([series.title for series in series_list])
+
+    return render(request, 'my_template.html', {
+        'reviews_list': reviews_list,
+        'concatenated_titles': concatenated_titles
+    })

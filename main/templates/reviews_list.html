@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ serial.title }}</title>
 </head>
 <body>
     <ul>
         {% for review in reviews_list %}
-        <li>{{ review.name }}</li>
-       {% endfor %}
+        <li>
+            <h2>Series: {{ review.series.title }}</h2> <!-- Titlul seriei -->
+            <h3>{{ review.name }}</h3> <!-- Numele folosit în formular -->
+            <p>{{ review.comment }}</p> <!-- Comentariul -->
+            <p>Rating: {{ review.rating }}</p> <!-- Ratingul -->
+        </li>
+        {% endfor %}
     </ul>
 </body>
 </html>
