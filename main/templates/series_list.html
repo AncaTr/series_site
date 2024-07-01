@@ -11,7 +11,11 @@
                     <a href="{% url 'reviews' serial.id %}">See reviews</a>
                     <h3>{{ serial.titlu }}</h3>
                     <p class="description">{{ serial.descriere }}</p>
-                    <p><strong>Genuri:</strong> {{ serial.genuri }}</p>
+               <p><strong>Genuri:</strong>
+                        {% for gen in serial.genuri.all %}
+                            {{ gen.nume }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
                     <p><strong>Țara:</strong> {{ serial.tara }}</p>
                     {% if serial.imagine %}
                         <img src="{{ serial.imagine.url }}" alt="{{ serial.titlu }}" class="series-image">
