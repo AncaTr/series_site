@@ -11,7 +11,7 @@
                     <a href="{% url 'reviews' serial.id %}">See reviews</a>
                     <h3>{{ serial.titlu }}</h3>
                     <p class="description">{{ serial.descriere }}</p>
-               <p><strong>Genuri:</strong>
+                    <p><strong>Genuri:</strong>
                         {% for gen in serial.genuri.all %}
                             {{ gen.nume }}{% if not forloop.last %}, {% endif %}
                         {% endfor %}
@@ -20,23 +20,23 @@
                     {% if serial.imagine %}
                         <img src="{{ serial.imagine.url }}" alt="{{ serial.titlu }}" class="series-image">
                     {% endif %}
-
-                    <!-- Butonul pentru deschiderea formularului -->
-                    <button class="openReviewForm" data-serial-id="{{ serial.id }}">Adaugă comentariu și rating</button>
-
                     <!-- Formularul de recenzie specific serialului -->
-                    <div class="reviewForm" id="reviewForm-{{ serial.id }}" style="display: none;">
-                        <form action="/submit_review/{{ serial.id }}/" method="post">
-                            {% csrf_token %}
-                            <label for="name">Nume:</label><br>
-                            <input type="text" id="name" name="name"><br>
-                            <label for="comment">Comentariu:</label><br>
-                            <textarea id="comment" name="comment"></textarea><br>
-                            <label for="rating">Rating (1-5 stele):</label><br>
-                            <input type="number" id="rating" name="rating" min="1" max="5"><br>
-                            <input type="submit" value="Trimite">
-                        </form>
-                    </div>
+                    {% if request.user.is_authenticated %}
+                        <!-- Butonul pentru deschiderea formularului -->
+                        <button class="openReviewForm" data-serial-id="{{ serial.id }}">Adaugă comentariu și rating</button>
+                        <div class="reviewForm" id="reviewForm-{{ serial.id }}" style="display: none;">
+                            <form action="/submit_review/{{ serial.id }}/" method="post">
+                                {% csrf_token %}
+                                <label for="name">Nume:</label><br>
+                                <input type="text" id="name" name="name"><br>
+                                <label for="comment">Comentariu:</label><br>
+                                <textarea id="comment" name="comment"></textarea><br>
+                                <label for="rating">Rating (1-5 stele):</label><br>
+                                <input type="number" id="rating" name="rating" min="1" max="5"><br>
+                                <input type="submit" value="Trimite">
+                            </form>
+                        </div>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
